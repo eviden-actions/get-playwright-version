@@ -1,5 +1,6 @@
 name: 'Get Playwright Version'
 description: 'Get the Playwright Version from the project lockfile'
+author: 'Eviden'
 
 outputs:
   playwright-version:
