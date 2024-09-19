@@ -1,0 +1,47 @@
+{
+	"name": "@eviden-actions/template",
+	"description": "Template repository for @eviden-actions organization",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/eviden-actions/template.git"
+	},
+	"bugs": "https://github.com/eviden-actions/template/issues",
+	"license": "MIT",
+	"private": "true",
+	"version": "1.0.47",
+	"engines": {
+		"node": ">= 16.0.0",
+		"npm": ">= 8.0.0"
+	},
+	"files": [
+		"action.yml"
+	],
+	"scripts": {
+		"start": "echo 'No start script defined for this project'",
+		"build": "echo 'No build script defined for this project'",
+		"lint": "npm run lint:style",
+		"lint:fix": "npm run lint:style:fix",
+		"lint:style": "prettier --check --ignore-unknown .",
+		"lint:style:fix": "prettier --write --ignore-unknown .",
+		"git:pre-commit": "npx pretty-quick --staged",
+		"git:pre-push": "npm test",
+		"prepare": "husky install",
+		"release": "npx semantic-release",
+		"test": "echo 'No test script defined for this project'"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/git": "^10.0.1",
+		"husky": "^9.1.6",
+		"prettier": "^3.3.3"
+	},
+	"optionalDependencies": {
+		"pretty-quick": "^4.0.0",
+		"semantic-release": "^24.1.1"
+	},
+	"overrides": {
+		"conventional-changelog-conventionalcommits": ">= 8.0.0"
+	}
+}
