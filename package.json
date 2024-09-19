@@ -17,11 +17,12 @@
 		"action.yml"
 	],
 	"scripts": {
+		"build": "npx ncc build src/index.js -o dist --source-map --license licenses.txt",
 		"lint": "npm run lint:style",
 		"lint:fix": "npm run lint:style:fix",
 		"lint:style": "prettier --check --ignore-unknown .",
 		"lint:style:fix": "prettier --write --ignore-unknown .",
-		"git:pre-commit": "npx pretty-quick --staged",
+		"git:pre-commit": "npx pretty-quick --staged && npm run build",
 		"git:pre-push": "npm test",
 		"prepare": "husky",
 		"release": "npx semantic-release",
@@ -32,6 +33,7 @@
 		"@commitlint/config-conventional": "^19.5.0",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/git": "^10.0.1",
+		"@vercel/ncc": "^0.38.1",
 		"husky": "^9.1.6",
 		"prettier": "^3.3.3",
 		"semantic-release-major-tag": "^0.3.2"
