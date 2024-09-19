@@ -83,5 +83,4 @@ src/scripts/.baseDir.ts
 
 # Compiled output
 build/
-dist/
 reports/
