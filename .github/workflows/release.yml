@@ -1,0 +1,24 @@
+# This workflow triggers the release process after code check is completed
+#
+name: Release
+
+# Controls when the action will run.
+on:
+  workflow_run:
+    workflows: [Checks]
+    types: [completed]
+    branches: [main, next, beta, alpha]
+
+concurrency:
+  # group: ${{ github.workflow }}_${{ github.head_ref || github.ref || github.run_id }}
+  # Use the name of the triggering workflow run as the concurrency group to avoid conccurency issues
+  group: ${{ github.event.workflow_run.name || github.workflow  }}_${{ github.head_ref || github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  semantic-release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: '▶️ actions'
+    uses: eviden-actions/actions/.github/workflows/release.yml@v1
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_TOKEN  }}

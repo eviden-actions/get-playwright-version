@@ -1,0 +1,33 @@
+#
+# Run all checks on PRs and pushes
+#
+name: Checks
+
+# Controls when the action will run.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+  push:
+    branches: [main, next, beta, alpha]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}_${{ github.head_ref || github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  pr-lint:
+    name: '▶️ actions'
+    uses: eviden-actions/actions/.github/workflows/lint-pr.yml@v1
+
+  npm-lint:
+    name: '▶️ actions'
+    uses: eviden-actions/actions/.github/workflows/lint-code.yml@v1
+
+  test:
+    name: '▶📌'
+    needs: [pr-lint, npm-lint]
+    uses: ./.github/workflows/test.yml

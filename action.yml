@@ -1,18 +1,10 @@
-name: 'Template'
-description: 'Template action'
+name: 'Get Playwright Version'
+description: 'Get the Playwright Version from the project lockfile'
 
-inputs:
-  repository:
-    description: 'Repository name'
-    required: false
-    default: '@eviden-actions/template'
+outputs:
+  playwright-version:
+    description: The playwright version used in the project
 
 runs:
-  using: composite
-  steps:
-    - id: step-1
-      name: '1️⃣ Step 1'
-      shell: bash
-      run: |
-        echo "This is the action from the ${{ inputs.repository }} repository..."
-        echo "For more information, see https://docs.github.com/en/actions/creating-actions/about-custom-actions"
+  using: 'node20'
+  main: 'index.js'

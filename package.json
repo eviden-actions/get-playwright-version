@@ -1,31 +1,29 @@
 {
-	"name": "@eviden-actions/template",
-	"description": "Template repository for @eviden-actions organization",
+	"name": "@eviden-actions/get-playwright-version",
+	"description": "This parses the package-lock.json and returns the project's current playwright version",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/eviden-actions/template.git"
+		"url": "https://github.com/eviden-actions/get-playwright-version.git"
 	},
-	"bugs": "https://github.com/eviden-actions/template/issues",
+	"bugs": "https://github.com/eviden-actions/get-playwright-version/issues",
 	"license": "MIT",
 	"private": "true",
-	"version": "1.0.47",
+	"version": "0.0.0",
 	"engines": {
-		"node": ">= 16.0.0",
-		"npm": ">= 8.0.0"
+		"node": ">= 20.0.0",
+		"npm": ">= 10.0.0"
 	},
 	"files": [
 		"action.yml"
 	],
 	"scripts": {
-		"start": "echo 'No start script defined for this project'",
-		"build": "echo 'No build script defined for this project'",
 		"lint": "npm run lint:style",
 		"lint:fix": "npm run lint:style:fix",
 		"lint:style": "prettier --check --ignore-unknown .",
 		"lint:style:fix": "prettier --write --ignore-unknown .",
 		"git:pre-commit": "npx pretty-quick --staged",
 		"git:pre-push": "npm test",
-		"prepare": "husky install",
+		"prepare": "husky",
 		"release": "npx semantic-release",
 		"test": "echo 'No test script defined for this project'"
 	},
@@ -35,7 +33,8 @@
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/git": "^10.0.1",
 		"husky": "^9.1.6",
-		"prettier": "^3.3.3"
+		"prettier": "^3.3.3",
+		"semantic-release-major-tag": "^0.3.2"
 	},
 	"optionalDependencies": {
 		"pretty-quick": "^4.0.0",

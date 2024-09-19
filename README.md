@@ -1,8 +1,11 @@
-# template
+# get-playwright-version
 
-GitHub Actions template rpository
+This parses the package-lock.json and returns the project's current playwright version.
+If no version is found, it will return `latest`
 
-[![Release](https://github.com/eviden-actions/template/actions/workflows/on_push.yml/badge.svg#main)](https://github.com/eviden-actions/template/actions/workflows/on_push.yml)
+If you are using the [Playwright Docker Image](https://mcr.microsoft.com/en-us/product/playwright/about) in your CI, Playwright strongly recommends using a [versioned tag](https://playwright.dev/docs/docker). This action can help you make sure your project's Playwright version matches the Playwright Docker Image version.
+
+[![Release](https://github.com/eviden-actions/get-playwright-version/actions/workflows/release.yml/badge.svg#main)](https://github.com/eviden-actions/get-playwright-version/actions/workflows/release.yml)
 
 ## Prerequisites
 
@@ -11,12 +14,45 @@ Define whatever your action needs to run here
 ## Usage
 
 ```
-steps:
-- uses: eviden-actions/template@v1
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  read-playwright-version:
+    name: 'Read Playwright Version'
+    runs-on: ubuntu-latest
+    outputs:
+      playwright-version: ${{ steps.get_playwright_version.outputs.playwright-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: get_playwright_version
+				uses: eviden-actions/get-playwright-version@v1
+
+  playwright:
+    name: 'Run Playwright Tests'
+    runs-on: ubuntu-latest
+    needs: read-playwright-version
+    container:
+      image: mcr.microsoft.com/playwright:${{ needs.read-playwright-version.outputs.playwright-version }}-noble
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Run your tests
+        run: npx playwright test
+        env:
+          HOME: /root
 ```
 
-### Inputs
+### Outputs
 
-|    Input     |        Description         | Required |
-| :----------: | :------------------------: | :------: |
-| `repository` | The name of the repository |    No    |
+|         Name         |                    Description                    |  Example  |
+| :------------------: | :-----------------------------------------------: | :-------: |
+| `playwright-version` | The playwright version from the package-lock.json | `v1.47.1` |
+
+## Sources
+
+Thanks to @mxschmitt for coming up with the [workflow](https://github.com/microsoft/playwright/issues/32483#issuecomment-2348193597) this action is based on.
