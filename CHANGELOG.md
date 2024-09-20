@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/eviden-actions/get-playwright-version/compare/v1.1.0...v1.1.1) (2024-09-20)
+
+### Bug Fixes
+
+* pnpm version parser ([7deed7a](https://github.com/eviden-actions/get-playwright-version/commit/7deed7a9821b78b1713f050f8ba3e5404eafdb7d))
+
 ## [1.1.0](https://github.com/eviden-actions/get-playwright-version/compare/v1.0.0...v1.1.0) (2024-09-20)
 
 ### Features
