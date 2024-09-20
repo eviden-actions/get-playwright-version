@@ -30614,7 +30614,7 @@ const getVersionFromPnpmLock = async () => {
 
 		for (const pkg in packages) {
 			if (pkg.includes('@playwright/test')) {
-				const version = packages[pkg].version;
+				const version = pkg.match(/@([^@]+)$/)[1];
 				console.log(`Playwright v${version} found in the pnpm-lock.yaml`);
 				return `v${version}`;
 			}
