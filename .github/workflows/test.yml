@@ -36,6 +36,20 @@ jobs:
       - name: '✅ Test code'
         uses: ./
 
+      - name: 'Verify version'
+        shell: bash
+        run: |
+          version_string=$(npx playwright --version) 
+          # Extract version number using regex
+          version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
+
+          if [ "$version_number" == ${steps.get-version.outputs.playwright-version} ]; then
+            echo "Versions match: $version_number"
+          else
+            echo "Versions do not match. Expected: ${steps.get-version.outputs.playwright-version}, Actual: $version_number"
+            exit 1
+          fi
+
   test-yarn:
     name: '🧪 Test Yarn'
     runs-on: ubuntu-latest
@@ -66,6 +80,20 @@ jobs:
       - name: '✅ Test code'
         uses: ./
 
+      - name: 'Verify version'
+        shell: bash
+        run: |
+          version_string=$(npx playwright --version) 
+          # Extract version number using regex
+          version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
+
+          if [ "$version_number" == ${steps.get-version.outputs.playwright-version} ]; then
+            echo "Versions match: $version_number"
+          else
+            echo "Versions do not match. Expected: ${steps.get-version.outputs.playwright-version}, Actual: $version_number"
+            exit 1
+          fi
+
   test-pnpm:
     name: '🧪 Test PNPM'
     runs-on: ubuntu-latest
@@ -94,4 +122,19 @@ jobs:
         run: pnpm add @playwright/test
 
       - name: '✅ Test code'
+        id: get-version
         uses: ./
+
+      - name: 'Verify version'
+        shell: bash
+        run: |
+          version_string=$(npx playwright --version) 
+          # Extract version number using regex
+          version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
+
+          if [ "$version_number" == ${steps.get-version.outputs.playwright-version} ]; then
+            echo "Versions match: $version_number"
+          else
+            echo "Versions do not match. Expected: ${steps.get-version.outputs.playwright-version}, Actual: $version_number"
+            exit 1
+          fi
