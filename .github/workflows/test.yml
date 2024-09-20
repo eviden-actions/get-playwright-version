@@ -87,8 +87,8 @@ jobs:
       - name: '🧹 Remove package-lock'
         run: rm -f package-lock.json
 
-      - name: '🎭 Install YARN'
-        run: npm i -D yarn
+      - name: '🎭 Install PNPM'
+        run: npm i -D pnpm
 
       - name: '🎭 Install playwright'
         run: pnpm add @playwright/test
