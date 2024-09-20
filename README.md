@@ -1,7 +1,7 @@
 # get-playwright-version
 
-This parses the package-lock.json and returns the project's current playwright version.
-If no version is found, it will return `latest`
+This parses the your project's lockfile and returns the installed playwright version.
+Supported are `package-lock.json` (NPM), `yarn.lock` (Yarn 1), and `pnpm-lock.yaml` (PNPM).
 
 If you are using the [Playwright Docker Image](https://mcr.microsoft.com/en-us/product/playwright/about) in your CI, Playwright strongly recommends using a [versioned tag](https://playwright.dev/docs/docker). This action can help you make sure your project's Playwright version matches the Playwright Docker Image version.
 
@@ -17,7 +17,7 @@ Define whatever your action needs to run here
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
 
 jobs:
   read-playwright-version:
