@@ -54,11 +54,11 @@ jobs:
           check-latest: true
           cache: 'npm'
 
-      - name: '🧹 Remove package-lock'
-        run: rm -f package-lock.json
-
       - name: '🎭 Install YARN'
         run: npm i -D yarn
+
+      - name: '🧹 Remove package-lock'
+        run: rm -f package-lock.json
 
       - name: '🎭 Install playwright'
         run: yarn add @playwright/test
@@ -84,11 +84,11 @@ jobs:
           check-latest: true
           cache: 'npm'
 
-      - name: '🧹 Remove package-lock'
-        run: rm -f package-lock.json
-
       - name: '🎭 Install PNPM'
         run: npm i -D pnpm
+
+      - name: '🧹 Remove package-lock'
+        run: rm -f package-lock.json
 
       - name: '🎭 Install playwright'
         run: pnpm add @playwright/test
