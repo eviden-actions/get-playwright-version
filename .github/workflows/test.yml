@@ -9,8 +9,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    name: '🧪 Test'
+  test-npm:
+    name: '🧪 Test NPM'
     runs-on: ubuntu-latest
 
     steps:
@@ -27,11 +27,71 @@ jobs:
           check-latest: true
           cache: 'npm'
 
-      - name: '⛓️ Install dependencies'
-        run: npm ci --no-audit --prefer-offline --progress=false
+      - name: '🧹 Remove package-lock'
+        run: rm -f package-lock.json
 
       - name: '🎭 Install playwright'
-        run: npm i -D @playwright/test
+        run: npm i @playwright/test
+
+      - name: '✅ Test code'
+        uses: ./
+
+  test-yarn:
+    name: '🧪 Test Yarn'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: '☁️ Checkout repository'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: '⚙️ Use Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'npm'
+
+      - name: '🧹 Remove package-lock'
+        run: rm -f package-lock.json
+
+      - name: '🎭 Install YARN'
+        run: npm i -D yarn
+
+      - name: '🎭 Install playwright'
+        run: yarn add @playwright/test
+
+      - name: '✅ Test code'
+        uses: ./
+
+  test-pnpm:
+    name: '🧪 Test PNPM'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: '☁️ Checkout repository'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: '⚙️ Use Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'npm'
+
+      - name: '🧹 Remove package-lock'
+        run: rm -f package-lock.json
+
+      - name: '🎭 Install YARN'
+        run: npm i -D yarn
+
+      - name: '🎭 Install playwright'
+        run: pnpm add @playwright/test
 
       - name: '✅ Test code'
         uses: ./
