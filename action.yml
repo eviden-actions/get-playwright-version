@@ -2,6 +2,10 @@ name: 'Get Playwright Version'
 description: 'Get the Playwright Version from the project lockfile'
 author: 'Eviden'
 
+branding:
+  icon: 'at-sign'
+  color: 'orange'
+
 outputs:
   playwright-version:
     description: The playwright version used in the project

@@ -55,4 +55,4 @@ jobs:
 
 ## Sources
 
-Thanks to @mxschmitt for coming up with the [workflow](https://github.com/microsoft/playwright/issues/32483#issuecomment-2348193597) this action is based on.
+Thanks to [@mxschmitt](https://github.com/mxschmitt) for coming up with the [workflow](https://github.com/microsoft/playwright/issues/32483#issuecomment-2348193597) this action is based on.
