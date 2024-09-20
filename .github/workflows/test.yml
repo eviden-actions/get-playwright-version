@@ -55,7 +55,7 @@ jobs:
           cache: 'npm'
 
       - name: '🎭 Install YARN'
-        run: npm i -D yarn
+        run: npm i -g yarn
 
       - name: '🧹 Remove package-lock'
         run: rm -f package-lock.json
@@ -85,7 +85,7 @@ jobs:
           cache: 'npm'
 
       - name: '🎭 Install PNPM'
-        run: npm i -D pnpm
+        run: npm i -g pnpm
 
       - name: '🧹 Remove package-lock'
         run: rm -f package-lock.json
