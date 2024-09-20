@@ -1,6 +1,14 @@
 {
 	"name": "@eviden-actions/get-playwright-version",
-	"description": "This parses the package-lock.json and returns the project's current playwright version",
+	"description": "Extracts and outputs the Playwright version from a project's lockfile",
+	"keywords": [
+		"Actions",
+		"GitHub",
+		"Playwright",
+		"Version",
+		"Lockfile",
+		"CI-CD"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/eviden-actions/get-playwright-version.git"
