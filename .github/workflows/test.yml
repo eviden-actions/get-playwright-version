@@ -40,16 +40,16 @@ jobs:
       - name: 'Verify version'
         shell: bash
         env:
-          playwright-version: ${{ steps.get-version.outputs.playwright-version }}
+          playwright_version: ${{ steps.get-version.outputs.playwright-version }}
         run: |
           version_string=$(npx playwright --version) 
           # Extract version number using regex
           version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
 
-          if [ "$version_number" == $playwright-version ]; then
+          if [ "$version_number" == $playwright_version ]; then
             echo "Versions match: $version_number"
           else
-            echo "Versions do not match. Expected: $playwright-version, Actual: $version_number"
+            echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
             exit 1
           fi
 
@@ -87,16 +87,16 @@ jobs:
       - name: 'Verify version'
         shell: bash
         env:
-          playwright-version: ${{ steps.get-version.outputs.playwright-version }}
+          playwright_version: ${{ steps.get-version.outputs.playwright-version }}
         run: |
           version_string=$(npx playwright --version) 
           # Extract version number using regex
           version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
 
-          if [ "$version_number" == $playwright-version ]; then
+          if [ "$version_number" == $playwright_version ]; then
             echo "Versions match: $version_number"
           else
-            echo "Versions do not match. Expected: $playwright-version, Actual: $version_number"
+            echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
             exit 1
           fi
 
@@ -134,15 +134,15 @@ jobs:
       - name: 'Verify version'
         shell: bash
         env:
-          playwright-version: ${{ steps.get-version.outputs.playwright-version }}
+          playwright_version: ${{ steps.get-version.outputs.playwright-version }}
         run: |
           version_string=$(npx playwright --version) 
           # Extract version number using regex
           version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
 
-          if [ "$version_number" == $playwright-version ]; then
+          if [ "$version_number" == $playwright_version ]; then
             echo "Versions match: $version_number"
           else
-            echo "Versions do not match. Expected: $playwright-version, Actual: $version_number"
+            echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
             exit 1
           fi
