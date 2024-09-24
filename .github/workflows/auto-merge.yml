@@ -5,10 +5,7 @@ name: Auto Merge
 
 # Controls when the action will run.
 on:
-  workflow_run:
-    workflows: [Checks]
-    types: [completed]
-    branches: [main, next, beta, alpha]
+  pull_request:
 
 concurrency:
   # Use the name of the triggering workflow run as the concurrency group to avoid conccurency issues
@@ -21,7 +18,7 @@ permissions:
 
 jobs:
   dependabot:
-    if: ${{ github.actor == 'dependabot[bot]' && github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.actor == 'dependabot[bot]' && github.event.pull_request.conclusion == 'success' }}
     name: '▶️ actions'
     uses: eviden-actions/actions/.github/workflows/dependabot.yml@v1
     secrets:
