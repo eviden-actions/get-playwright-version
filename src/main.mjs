@@ -2,6 +2,8 @@ import core from '@actions/core';
 import { promises as fs } from 'node:fs';
 import yaml from 'js-yaml';
 
+const noVersionFound = core.getInput('no-version-found');
+
 /**
  * The main function for the action.
  * @returns {Promise<string>} The Playwright version.
@@ -11,7 +13,17 @@ export const run = async () => {
 		const version =
 			(await getVersionFromPackageLock()) || (await getVersionFromYarnLock()) || (await getVersionFromPnpmLock());
 		if (!version) {
-			core.setFailed('Cannot find a lockfile with Playwright');
+			switch (noVersionFound) {
+				case 'info':
+					core.info('No Playwright version found');
+					break;
+				case 'warning':
+					core.warning('No Playwright version found');
+					break;
+				default:
+					core.setFailed('No Playwright version found');
+					break;
+			}
 		} else {
 			core.setOutput('playwright-version', `${version}`);
 		}
@@ -35,7 +47,6 @@ const getVersionFromPackageLock = async () => {
 			return `v${version}`;
 		} catch (error) {
 			console.log(error);
-			core.setFailed('No Playwright version found');
 		}
 	} catch (error) {
 		console.debug('package-lock.json not found');
