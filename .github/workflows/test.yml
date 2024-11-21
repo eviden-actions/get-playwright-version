@@ -53,6 +53,32 @@ jobs:
             exit 1
           fi
 
+  test-no-version:
+    name: '🧪 Test no version'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: '☁️ Checkout repository'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: '⚙️ Use Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'npm'
+
+      - name: '✅ Test code'
+        id: get-version
+        uses: ./
+        with:
+          no-version-found: 'warning'
+        # Check that the action doesn't fail  
+        
+
   test-yarn:
     name: '🧪 Test Yarn'
     runs-on: ubuntu-latest
