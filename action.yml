@@ -6,6 +6,12 @@ branding:
   icon: 'at-sign'
   color: 'orange'
 
+inputs:
+  no-version-found:
+    description: 'The message level when no Playwright version is found (error, warning, info)'
+    required: false
+    default: 'error'
+
 outputs:
   playwright-version:
     description: The playwright version used in the project
