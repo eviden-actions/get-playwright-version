@@ -51,8 +51,8 @@ jobs:
 
 ### Inputs
 
-| Name | Description | Default |
-| :--: | :---------: | :-----: |
+|        Name        |                                    Description                                     | Default |
+| :----------------: | :--------------------------------------------------------------------------------: | :-----: |
 | `no-version-found` | The message level when no Playwright version is found (`error`, `warning`, `info`) | `error` |
 
 ### Outputs

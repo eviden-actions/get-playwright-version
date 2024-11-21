@@ -76,8 +76,7 @@ jobs:
         uses: ./
         with:
           no-version-found: 'warning'
-        # Check that the action doesn't fail  
-        
+        # Check that the action doesn't fail
 
   test-yarn:
     name: '🧪 Test Yarn'
