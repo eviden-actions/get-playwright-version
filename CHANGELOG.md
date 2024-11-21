@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/eviden-actions/get-playwright-version/compare/v1.1.1...v1.2.0) (2024-11-21)
+
+### Features
+
+* add optional output level when no playwright version is found ([#13](https://github.com/eviden-actions/get-playwright-version/issues/13)) ([821f2d8](https://github.com/eviden-actions/get-playwright-version/commit/821f2d89c0264225034f7fb2a8728ad37a0086aa))
+
 ## [1.1.1](https://github.com/eviden-actions/get-playwright-version/compare/v1.1.0...v1.1.1) (2024-09-20)
 
 ### Bug Fixes
