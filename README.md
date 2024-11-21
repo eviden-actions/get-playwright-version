@@ -23,6 +23,8 @@ jobs:
   read-playwright-version:
     name: 'Read Playwright Version'
     runs-on: ubuntu-latest
+    inputs:
+      no-version-found: 'error'
     outputs:
       playwright-version: ${{ steps.get_playwright_version.outputs.playwright-version }}
     steps:
@@ -46,6 +48,12 @@ jobs:
         env:
           HOME: /root
 ```
+
+### Inputs
+
+| Name | Description | Default |
+| :--: | :---------: | :-----: |
+| `no-version-found` | The message level when no Playwright version is found (`error`, `warning`, `info`) | `error` |
 
 ### Outputs
 
