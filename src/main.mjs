@@ -41,7 +41,9 @@ const getVersionFromPackageLock = async () => {
 		const lockfile = JSON.parse(data);
 
 		try {
-			let version = lockfile['packages']['node_modules/@playwright/test'].version;
+			let version =
+				lockfile['packages']['node_modules/playwright']?.version ||
+				lockfile['packages']['node_modules/@playwright/test']?.version;
 
 			console.log(`Playwright v${version} found in the package-lock.json`);
 			return `v${version}`;
@@ -59,7 +61,11 @@ const getVersionFromYarnLock = async () => {
 		console.debug('yarn.lock found');
 
 		const lines = data.split('\n');
-		const playwrightLineIndex = lines.findIndex((line) => line.includes('@playwright/test@'));
+		let playwrightLineIndex = lines.findIndex((line) => line.includes('playwright@'));
+
+		if (playwrightLineIndex === -1) {
+			playwrightLineIndex = lines.findIndex((line) => line.includes('@playwright/test@'));
+		}
 
 		if (playwrightLineIndex !== -1) {
 			const versionLine = lines[playwrightLineIndex + 1];
@@ -81,11 +87,27 @@ const getVersionFromPnpmLock = async () => {
 		const lockfile = yaml.load(data);
 		const packages = lockfile.packages;
 
+		// First, check for the non-scoped playwright package.
+		for (const pkg in packages) {
+			if (pkg.includes('playwright')) {
+				const match = pkg.match(/@([^@]+)$/);
+				if (match) {
+					const version = match[1];
+					console.log(`Playwright v${version} found in the pnpm-lock.yaml`);
+					return `v${version}`;
+				}
+			}
+		}
+
+		// Fallback: check for '@playwright/test'
 		for (const pkg in packages) {
 			if (pkg.includes('@playwright/test')) {
-				const version = pkg.match(/@([^@]+)$/)[1];
-				console.log(`Playwright v${version} found in the pnpm-lock.yaml`);
-				return `v${version}`;
+				const match = pkg.match(/@([^@]+)$/);
+				if (match) {
+					const version = match[1];
+					console.log(`Playwright v${version} found in the pnpm-lock.yaml`);
+					return `v${version}`;
+				}
 			}
 		}
 	} catch (error) {

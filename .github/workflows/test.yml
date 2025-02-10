@@ -10,7 +10,49 @@ on:
 
 jobs:
   test-npm:
-    name: '🧪 Test NPM'
+    name: '🧪 Test NPM (@playwright/test)'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: '☁️ Checkout repository'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: '⚙️ Use Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'npm'
+
+      - name: '🧹 Remove package-lock'
+        run: rm -f package-lock.json
+
+      - name: '🎭 Install @playwright/test'
+        run: npm i @playwright/test
+
+      - name: '✅ Test code'
+        id: get-version
+        uses: ./
+
+      - name: 'Verify version'
+        shell: bash
+        env:
+          playwright_version: ${{ steps.get-version.outputs.playwright-version }}
+        run: |
+          version_string=$(npx playwright --version)
+          version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
+          if [ "$version_number" == "$playwright_version" ]; then
+            echo "Versions match: $version_number"
+          else
+            echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
+            exit 1
+          fi
+
+  test-npm-playwright:
+    name: '🧪 Test NPM (playwright package)'
     runs-on: ubuntu-latest
 
     steps:
@@ -31,7 +73,7 @@ jobs:
         run: rm -f package-lock.json
 
       - name: '🎭 Install playwright'
-        run: npm i @playwright/test
+        run: npm i playwright
 
       - name: '✅ Test code'
         id: get-version
@@ -42,11 +84,9 @@ jobs:
         env:
           playwright_version: ${{ steps.get-version.outputs.playwright-version }}
         run: |
-          version_string=$(npx playwright --version) 
-          # Extract version number using regex
+          version_string=$(npx playwright --version)
           version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
-
-          if [ "$version_number" == $playwright_version ]; then
+          if [ "$version_number" == "$playwright_version" ]; then
             echo "Versions match: $version_number"
           else
             echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
@@ -79,7 +119,52 @@ jobs:
         # Check that the action doesn't fail
 
   test-yarn:
-    name: '🧪 Test Yarn'
+    name: '🧪 Test Yarn (@playwright/test)'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: '☁️ Checkout repository'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: '⚙️ Use Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'npm'
+
+      - name: '🎭 Install YARN'
+        run: npm i -g yarn
+
+      - name: '🧹 Remove package-lock'
+        run: rm -f package-lock.json
+
+      - name: '🎭 Install @playwright/test'
+        run: yarn add @playwright/test
+
+      - name: '✅ Test code'
+        id: get-version
+        uses: ./
+
+      - name: 'Verify version'
+        shell: bash
+        env:
+          playwright_version: ${{ steps.get-version.outputs.playwright-version }}
+        run: |
+          version_string=$(npx playwright --version)
+          version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
+          if [ "$version_number" == "$playwright_version" ]; then
+            echo "Versions match: $version_number"
+          else
+            echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
+            exit 1
+          fi
+
+  test-yarn-playwright:
+    name: '🧪 Test Yarn (playwright package)'
     runs-on: ubuntu-latest
 
     steps:
@@ -103,7 +188,7 @@ jobs:
         run: rm -f package-lock.json
 
       - name: '🎭 Install playwright'
-        run: yarn add @playwright/test
+        run: yarn add playwright
 
       - name: '✅ Test code'
         id: get-version
@@ -114,11 +199,9 @@ jobs:
         env:
           playwright_version: ${{ steps.get-version.outputs.playwright-version }}
         run: |
-          version_string=$(npx playwright --version) 
-          # Extract version number using regex
+          version_string=$(npx playwright --version)
           version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
-
-          if [ "$version_number" == $playwright_version ]; then
+          if [ "$version_number" == "$playwright_version" ]; then
             echo "Versions match: $version_number"
           else
             echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
@@ -126,7 +209,52 @@ jobs:
           fi
 
   test-pnpm:
-    name: '🧪 Test PNPM'
+    name: '🧪 Test PNPM (@playwright/test)'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: '☁️ Checkout repository'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: '⚙️ Use Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'npm'
+
+      - name: '🎭 Install PNPM'
+        run: npm i -g pnpm
+
+      - name: '🧹 Remove package-lock'
+        run: rm -f package-lock.json
+
+      - name: '🎭 Install @playwright/test'
+        run: pnpm add @playwright/test
+
+      - name: '✅ Test code'
+        id: get-version
+        uses: ./
+
+      - name: 'Verify version'
+        shell: bash
+        env:
+          playwright_version: ${{ steps.get-version.outputs.playwright-version }}
+        run: |
+          version_string=$(npx playwright --version)
+          version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
+          if [ "$version_number" == "$playwright_version" ]; then
+            echo "Versions match: $version_number"
+          else
+            echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
+            exit 1
+          fi
+
+  test-pnpm-playwright:
+    name: '🧪 Test PNPM (playwright package)'
     runs-on: ubuntu-latest
 
     steps:
@@ -150,7 +278,7 @@ jobs:
         run: rm -f package-lock.json
 
       - name: '🎭 Install playwright'
-        run: pnpm add @playwright/test
+        run: pnpm add playwright
 
       - name: '✅ Test code'
         id: get-version
@@ -161,11 +289,9 @@ jobs:
         env:
           playwright_version: ${{ steps.get-version.outputs.playwright-version }}
         run: |
-          version_string=$(npx playwright --version) 
-          # Extract version number using regex
+          version_string=$(npx playwright --version)
           version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
-
-          if [ "$version_number" == $playwright_version ]; then
+          if [ "$version_number" == "$playwright_version" ]; then
             echo "Versions match: $version_number"
           else
             echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
