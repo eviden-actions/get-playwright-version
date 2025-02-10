@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/eviden-actions/get-playwright-version/compare/v1.2.0...v1.2.1) (2025-02-10)
+
+### Bug Fixes
+
+* check for either playwright or @playwright/test version ([#23](https://github.com/eviden-actions/get-playwright-version/issues/23)) ([025620a](https://github.com/eviden-actions/get-playwright-version/commit/025620a0bdad13d4e0be718eeaa41ece7ebca321))
+
 ## [1.2.0](https://github.com/eviden-actions/get-playwright-version/compare/v1.1.1...v1.2.0) (2024-11-21)
 
 ### Features
