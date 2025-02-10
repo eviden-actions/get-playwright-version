@@ -41,7 +41,8 @@ const getVersionFromPackageLock = async () => {
 		const lockfile = JSON.parse(data);
 
 		try {
-			let version = lockfile['packages']['node_modules/playwright']?.version ||
+			let version =
+				lockfile['packages']['node_modules/playwright']?.version ||
 				lockfile['packages']['node_modules/@playwright/test']?.version;
 
 			console.log(`Playwright v${version} found in the package-lock.json`);
@@ -79,37 +80,37 @@ const getVersionFromYarnLock = async () => {
 };
 
 const getVersionFromPnpmLock = async () => {
-    try {
-        const data = await fs.readFile('./pnpm-lock.yaml', 'utf-8');
-        console.debug('pnpm-lock.yaml found');
+	try {
+		const data = await fs.readFile('./pnpm-lock.yaml', 'utf-8');
+		console.debug('pnpm-lock.yaml found');
 
-        const lockfile = yaml.load(data);
-        const packages = lockfile.packages;
+		const lockfile = yaml.load(data);
+		const packages = lockfile.packages;
 
-        // First, check for the non-scoped playwright package.
-        for (const pkg in packages) {
-            if (pkg.includes('playwright')) {
-                const match = pkg.match(/@([^@]+)$/);
-                if (match) {
-                    const version = match[1];
-                    console.log(`Playwright v${version} found in the pnpm-lock.yaml`);
-                    return `v${version}`;
-                }
-            }
-        }
+		// First, check for the non-scoped playwright package.
+		for (const pkg in packages) {
+			if (pkg.includes('playwright')) {
+				const match = pkg.match(/@([^@]+)$/);
+				if (match) {
+					const version = match[1];
+					console.log(`Playwright v${version} found in the pnpm-lock.yaml`);
+					return `v${version}`;
+				}
+			}
+		}
 
-        // Fallback: check for '@playwright/test'
-        for (const pkg in packages) {
-            if (pkg.includes('@playwright/test')) {
-                const match = pkg.match(/@([^@]+)$/);
-                if (match) {
-                    const version = match[1];
-                    console.log(`Playwright v${version} found in the pnpm-lock.yaml`);
-                    return `v${version}`;
-                }
-            }
-        }
-    } catch (error) {
-        console.debug('pnpm-lock.yaml not found');
-    }
+		// Fallback: check for '@playwright/test'
+		for (const pkg in packages) {
+			if (pkg.includes('@playwright/test')) {
+				const match = pkg.match(/@([^@]+)$/);
+				if (match) {
+					const version = match[1];
+					console.log(`Playwright v${version} found in the pnpm-lock.yaml`);
+					return `v${version}`;
+				}
+			}
+		}
+	} catch (error) {
+		console.debug('pnpm-lock.yaml not found');
+	}
 };
