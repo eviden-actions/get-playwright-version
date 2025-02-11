@@ -116,7 +116,18 @@ jobs:
         uses: ./
         with:
           no-version-found: 'warning'
-        # Check that the action doesn't fail
+
+      - name: 'Verify version'
+        shell: bash
+        env:
+          playwright_version: ${{ steps.get-version.outputs.playwright-version }}
+        run: |
+          if [ -z "$playwright_version" ]; then
+            echo "Playwright version is null or empty"
+          else
+            echo "Playwright version is not null or empty: $playwright_version"
+            exit 1
+          fi
 
   test-yarn:
     name: '🧪 Test Yarn (@playwright/test)'
