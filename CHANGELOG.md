@@ -1,3 +1,9 @@
+## [1.2.2](https://github.com/eviden-actions/get-playwright-version/compare/v1.2.1...v1.2.2) (2025-02-11)
+
+### Bug Fixes
+
+* returning vundefined when playwright not found ([#26](https://github.com/eviden-actions/get-playwright-version/issues/26)) ([6098a73](https://github.com/eviden-actions/get-playwright-version/commit/6098a73a3d87dfc6e2cb82490f82512591029b6a))
+
 ## [1.2.1](https://github.com/eviden-actions/get-playwright-version/compare/v1.2.0...v1.2.1) (2025-02-10)
 
 ### Bug Fixes
