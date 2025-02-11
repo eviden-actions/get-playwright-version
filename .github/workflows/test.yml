@@ -84,12 +84,10 @@ jobs:
         env:
           playwright_version: ${{ steps.get-version.outputs.playwright-version }}
         run: |
-          version_string=$(npx playwright --version)
-          version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
-          if [ "$version_number" == "$playwright_version" ]; then
-            echo "Versions match: $version_number"
+          if [ -z "$playwright_version" ]; then
+            echo "Playwright version is null or empty"
           else
-            echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
+            echo "Playwright version is not null or empty: $playwright_version"
             exit 1
           fi
 
@@ -117,6 +115,20 @@ jobs:
         with:
           no-version-found: 'warning'
         # Check that the action doesn't fail
+
+      - name: 'Verify version'
+        shell: bash
+        env:
+          playwright_version: ${{ steps.get-version.outputs.playwright-version }}
+        run: |
+          version_string=$(npx playwright --version)
+          version_number=v$(echo "$version_string" | grep -oP '\d+\.\d+\.\d+')
+          if [ "$version_number" == "$playwright_version" ]; then
+            echo "Versions match: $version_number"
+          else
+            echo "Versions do not match. Expected: $playwright_version, Actual: $version_number"
+            exit 1
+          fi
 
   test-yarn:
     name: '🧪 Test Yarn (@playwright/test)'
