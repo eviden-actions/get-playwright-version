@@ -31327,8 +31327,8 @@ const getVersionFromPackageLock = async () => {
 
 		try {
 			let version =
-				lockfile['packages']['node_modules/playwright']?.version ||
-				lockfile['packages']['node_modules/@playwright/test']?.version;
+				lockfile['packages']['node_modules/playwright'].version ||
+				lockfile['packages']['node_modules/@playwright/test'].version;
 
 			console.log(`Playwright v${version} found in the package-lock.json`);
 			return `v${version}`;
