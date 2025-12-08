@@ -21,7 +21,7 @@ concurrency:
 jobs:
   pr-lint:
     name: '▶️ actions'
-    uses: eviden-actions/actions/.github/workflows/lint-pr.yml@v2
+    uses: eviden-actions/actions/.github/workflows/lint-pr.yml@v3
 
   npm-lint:
     name: '▶️ actions'
