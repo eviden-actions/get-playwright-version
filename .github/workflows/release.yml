@@ -9,6 +9,9 @@ on:
     types: [completed]
     branches: [main, next, beta, alpha]
 
+permissions:
+  contents: read
+
 concurrency:
   # group: ${{ github.workflow }}_${{ github.head_ref || github.ref || github.run_id }}
   # Use the name of the triggering workflow run as the concurrency group to avoid conccurency issues
@@ -19,6 +22,9 @@ jobs:
   semantic-release:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: '▶️ actions'
+    permissions:
+      contents: write
+      packages: write
     uses: eviden-actions/actions/.github/workflows/release.yml@v2
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN  }}
