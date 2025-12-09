@@ -29,5 +29,5 @@ updates:
     groups:
       atos-actions:
         patterns:
-          - '@atos-actions/*'
-          - '@eviden-actions/*'
+          - 'atos-actions/*'
+          - 'eviden-actions/*'
