@@ -25,6 +25,6 @@ jobs:
     permissions:
       contents: write
       packages: write
-    uses: eviden-actions/actions/.github/workflows/release.yml@v2
+    uses: eviden-actions/actions/.github/workflows/release.yml@v3
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN  }}
