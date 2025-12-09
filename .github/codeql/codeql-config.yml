@@ -1,0 +1,6 @@
+name: 'CodeQL Config'
+
+# Paths to ignore during analysis
+paths-ignore:
+  - 'dist/**'
+  - 'node_modules/**'
