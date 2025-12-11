@@ -1,3 +1,9 @@
+## [1.2.6](https://github.com/atos-actions/get-playwright-version/compare/v1.2.5...v1.2.6) (2025-12-11)
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump @actions/core from 2.0.0 to 2.0.1 ([#75](https://github.com/atos-actions/get-playwright-version/issues/75)) ([70bed29](https://github.com/atos-actions/get-playwright-version/commit/70bed294f4320945989aeee91c46b508af42ac92))
+
 ## [1.2.5](https://github.com/atos-actions/get-playwright-version/compare/v1.2.4...v1.2.5) (2025-12-11)
 
 ### Bug Fixes
