@@ -1,3 +1,9 @@
+## [1.2.5](https://github.com/atos-actions/get-playwright-version/compare/v1.2.4...v1.2.5) (2025-12-11)
+
+### Bug Fixes
+
+* rebrand repository from Eviden to Atos ([#74](https://github.com/atos-actions/get-playwright-version/issues/74)) ([bfe6a8d](https://github.com/atos-actions/get-playwright-version/commit/bfe6a8d5ad6857d5cdf394a066913443d1227878))
+
 ## [1.2.4](https://github.com/eviden-actions/get-playwright-version/compare/v1.2.3...v1.2.4) (2025-12-10)
 
 ### Dependencies and Other Build Updates
