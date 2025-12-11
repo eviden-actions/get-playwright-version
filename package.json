@@ -1,5 +1,5 @@
 {
-	"name": "@eviden-actions/get-playwright-version",
+	"name": "@atos-actions/get-playwright-version",
 	"description": "Extracts and outputs the Playwright version from a project's lockfile",
 	"keywords": [
 		"Actions",
@@ -11,9 +11,9 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/eviden-actions/get-playwright-version.git"
+		"url": "https://github.com/atos-actions/get-playwright-version.git"
 	},
-	"bugs": "https://github.com/eviden-actions/get-playwright-version/issues",
+	"bugs": "https://github.com/atos-actions/get-playwright-version/issues",
 	"license": "MIT",
 	"private": "true",
 	"version": "1.2.4",

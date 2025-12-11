@@ -5,7 +5,7 @@ Supported are `package-lock.json` (NPM), `yarn.lock` (Yarn 1), and `pnpm-lock.ya
 
 If you are using the [Playwright Docker Image](https://mcr.microsoft.com/en-us/product/playwright/about) in your CI, Playwright strongly recommends using a [versioned tag](https://playwright.dev/docs/docker). This action can help you make sure your project's Playwright version matches the Playwright Docker Image version.
 
-[![Release](https://github.com/eviden-actions/get-playwright-version/actions/workflows/release.yml/badge.svg#main)](https://github.com/eviden-actions/get-playwright-version/actions/workflows/release.yml)
+[![Release](https://github.com/atos-actions/get-playwright-version/actions/workflows/release.yml/badge.svg#main)](https://github.com/atos-actions/get-playwright-version/actions/workflows/release.yml)
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: get_playwright_version
-				uses: eviden-actions/get-playwright-version@v1
+				uses: atos-actions/get-playwright-version@v1
 
   playwright:
     name: 'Run Playwright Tests'

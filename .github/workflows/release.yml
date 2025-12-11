@@ -25,7 +25,7 @@ jobs:
     permissions:
       contents: write
       packages: write
-    uses: eviden-actions/actions/.github/workflows/release.yml@v3
+    uses: atos-actions/actions/.github/workflows/release.yml@v3
     secrets:
       RELEASE_APP_ID: ${{ secrets.RELEASE_APP_ID }}
       RELEASE_APP_PRIVATE_KEY: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
